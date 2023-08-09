@@ -11,7 +11,8 @@ public class DataBase {
     private static Statement statement;
     private DataBase(){}
     public static void makeConnection() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/battleship", "battleship_app", "1234");
+        connection = DriverManager.getConnection(
+                "jdbc:mysql://127.0.0.1:3306/battleship", "battleship_app", "1234");
         statement = connection.createStatement();
     }
     public static void closeConnection() throws SQLException {
@@ -23,8 +24,9 @@ public class DataBase {
     public static int creatUser(User user) throws SQLException {
         makeConnection();
 
-        statement.execute(String.format("INSERT INTO users (username, name, lastname, point) VALUES ('%s', '%s', '%s', %d)",
-                user.getUserName(), user.getName(), user.getLastName(), user.getPoint()),
+        statement.execute(String.format(
+                "INSERT INTO users (username, name, lastname, point, password) VALUES ('%s', '%s', '%s', %d, '%s')",
+                user.getUserName(), user.getName(), user.getLastName(), user.getPoint(), user.getPassword()),
                 Statement.RETURN_GENERATED_KEYS) ;
 
         ResultSet resultSet = statement.getGeneratedKeys();
@@ -48,7 +50,7 @@ public class DataBase {
         while (resultSet.next()) {
             users.add(new User(resultSet.getInt("id"), resultSet.getString("username"),
                     resultSet.getString("name"), resultSet.getString("lastname"),
-                    resultSet.getInt("point")));
+                    resultSet.getInt("point"), resultSet.getString("password")));
         }
 
         closeConnection();
@@ -62,7 +64,5 @@ public class DataBase {
                         user.getUserName(), user.getName(), user.getLastName(), user.getPoint(), user.getId()));
 
         closeConnection();
-
     }
-
 }

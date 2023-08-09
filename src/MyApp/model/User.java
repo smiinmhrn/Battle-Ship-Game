@@ -11,19 +11,23 @@ public class User {
     private String name;
     private String lastName;
     private int point;
+    private String password;
 
-    public User(int id, String userName, String name, String lastName, int point) {
+    public User(int id, String userName, String name, String lastName, int point, String password) {
         this.id = id;
         this.userName = userName;
         this.name = name;
         this.lastName = lastName;
         this.point = point;
+        this.password = password;
     }
-    public User(String userName, String name, String lastName, int point) {
+
+    public User(String userName, String name, String lastName, int point, String password) {
         this.userName = userName;
         this.name = name;
         this.lastName = lastName;
         this.point = point;
+        this.password = password;
     }
     public static ArrayList<User> getAllUsers() throws SQLException {
         return DataBase.getAllUsers();
@@ -35,7 +39,6 @@ public class User {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -70,5 +73,13 @@ public class User {
 
     public void setPoint(int point) {
         this.point = point;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
