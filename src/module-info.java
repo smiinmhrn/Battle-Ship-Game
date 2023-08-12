@@ -3,7 +3,7 @@ module My.App {
     requires javafx.controls;
     requires javafx.graphics;
     requires javafx.fxml;
-    requires java.sql; // Add this line to require the JDBC package
+    requires java.sql;
     exports MyApp;
     exports MyApp.controller;
     exports MyApp.model;
