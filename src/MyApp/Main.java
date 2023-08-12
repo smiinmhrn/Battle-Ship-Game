@@ -14,8 +14,8 @@ public class Main extends Application{
     public void start(Stage stage) throws Exception {
         BorderPane root = FXMLLoader.load(this.getClass().getResource("view/LoginPage.fxml"));
         stage.setTitle("Battle ship");
+        stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
-
     }
 }

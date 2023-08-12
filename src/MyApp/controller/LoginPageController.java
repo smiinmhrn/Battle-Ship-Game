@@ -8,9 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -39,8 +39,11 @@ public class LoginPageController implements Initializable {
     private Label errorLBL;
 
     static Stage stage = null;
+    private User user;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         errorLBL.setText("");
         exitBTN.setOnAction(event -> cancelBTNAction());
         startBTN.setOnAction(event -> {
@@ -67,16 +70,24 @@ public class LoginPageController implements Initializable {
             BorderPane root = FXMLLoader.load(this.getClass().getResource("/MyApp/view/RegisterPage.fxml"));
             stage = new Stage();
             stage.setTitle("register window");
+            stage.setResizable(false);
             stage.setScene(new Scene(root));
             stage.show();
         }
     }
     private void startGame() throws SQLException, IOException {
         if (checkEmptyFields() && checkUserInfo()) {
-            AnchorPane root = FXMLLoader.load(this.getClass().getResource("/MyApp/view/GameMainPage.fxml"));
+
+            FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/MyApp/view/GameMainPage.fxml"));
+            fxmlLoader.load();
+            GameMainPageController gameMainPageController = fxmlLoader.getController();
+            gameMainPageController.initUser(user);
+
             Stage mianStage = (Stage)registerBTN.getScene().getWindow();
-            mianStage.setScene(new Scene(root));
-            mianStage.setFullScreen(true);
+
+            mianStage.setScene(new Scene(fxmlLoader.getRoot()));
+            mianStage.setFullScreen(false);
+
         }
     }
     private boolean checkEmptyFields() {
@@ -88,7 +99,7 @@ public class LoginPageController implements Initializable {
         return true;
     }
     private boolean checkUserInfo () throws SQLException {
-        User user = checkExistsUsername();
+        this.user = checkExistsUsername();
         if (user != null) {
             return checkPassword(user);
         }else errorLBL.setText("username not found");
