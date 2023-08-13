@@ -5,16 +5,28 @@ import javafx.scene.control.Button;
 public class Cell extends Button {
     private int point = 0;
     private int xPosition;
+    private int yPosition;
+
     private boolean isSelected;
     private boolean isEditable = true;
+    private boolean isEnemyCell;
 
-    public Cell(int xPosition, int yPosition) {
+    public Cell(int xPosition, int yPosition, boolean isEnemyCell) {
         super(" ");
         this.xPosition = xPosition;
         this.yPosition = yPosition;
 
+        setEnemyCell(isEnemyCell);
         setPrefHeight(500.0);
         setPrefWidth(500.0);
+    }
+
+    public boolean isEnemyCell() {
+        return isEnemyCell;
+    }
+
+    public void setEnemyCell(boolean enemyCell) {
+        isEnemyCell = enemyCell;
     }
 
     public boolean isSelected() {
@@ -39,7 +51,8 @@ public class Cell extends Button {
 
     public void setPoint(int point) {
         this.point = point;
-        setStyle("-fx-background-color: gray");
+        if (!isEnemyCell)
+            setStyle("-fx-background-color: gray");
     }
 
     public int getxPosition() {
@@ -58,5 +71,4 @@ public class Cell extends Button {
         this.yPosition = yPosition;
     }
 
-    private int yPosition;
 }
