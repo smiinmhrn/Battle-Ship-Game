@@ -115,6 +115,11 @@
                   <Font name="Bodoni MT" size="23.0" />
                </font>
             </Label>
+            <Button fx:id="reteyBTN" layoutX="260.0" layoutY="773.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: black; -fx-background-radius: 50;" text="Retry" textFill="WHITE">
+               <font>
+                  <Font name="Bodoni MT" size="18.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </center>

@@ -40,6 +40,8 @@ public class RegisterPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        mouseHover();
+        mouseOutOfHover();
         errorLable.setText("");
         cancelBTN.setOnAction(event -> cancelBTNAction());
         registerBTN.setOnAction(event -> {
@@ -48,6 +50,22 @@ public class RegisterPageController implements Initializable {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+        });
+    }
+    private void mouseHover() {
+        cancelBTN.setOnMouseEntered(mouseEvent -> {
+            cancelBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50");
+        });
+        registerBTN.setOnMouseEntered(mouseEvent -> {
+            registerBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50");
+        });
+    }
+    private void mouseOutOfHover(){
+        cancelBTN.setOnMouseExited(mouseEvent -> {
+            cancelBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50");
+        });
+        registerBTN.setOnMouseExited(mouseEvent -> {
+            registerBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50");
         });
     }
     private void cancelBTNAction() {

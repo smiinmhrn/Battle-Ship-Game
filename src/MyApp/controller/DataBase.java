@@ -6,16 +6,15 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DataBase {
-
     private static Connection connection;
     private static Statement statement;
     private DataBase(){}
-    public static void makeConnection() throws SQLException {
+    private static void makeConnection() throws SQLException {
         connection = DriverManager.getConnection(
                 "jdbc:mysql://127.0.0.1:3306/battleship", "battleship_app", "1234");
         statement = connection.createStatement();
     }
-    public static void closeConnection() throws SQLException {
+    private static void closeConnection() throws SQLException {
         if (connection != null) {
             statement.close();
             connection.close();
@@ -35,12 +34,6 @@ public class DataBase {
         closeConnection();
 
         return id;
-    }
-    public static void deleteUser(User user) throws SQLException {
-
-        makeConnection();
-        statement.execute(String.format("DELETE FROM users WHERE id = %d", user.getId()));
-        closeConnection();
     }
     public static ArrayList<User> getAllUsers() throws SQLException {
         makeConnection();

@@ -43,7 +43,8 @@ public class LoginPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        mouseHover();
+        mouseOutOfHover();
         errorLBL.setText("");
         exitBTN.setOnAction(event -> cancelBTNAction());
         startBTN.setOnAction(event -> {
@@ -59,6 +60,28 @@ public class LoginPageController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        });
+    }
+    private void mouseHover() {
+        exitBTN.setOnMouseEntered(mouseEvent -> {
+            exitBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50");
+        });
+        startBTN.setOnMouseEntered(mouseEvent -> {
+            startBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50");
+        });
+        registerBTN.setOnMouseEntered(mouseEvent -> {
+            registerBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50");
+        });
+    }
+    private void mouseOutOfHover(){
+        exitBTN.setOnMouseExited(mouseEvent -> {
+            exitBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50");
+        });
+        startBTN.setOnMouseExited(mouseEvent -> {
+            startBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50");
+        });
+        registerBTN.setOnMouseExited(mouseEvent -> {
+            registerBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50");
         });
     }
     private void cancelBTNAction() {
