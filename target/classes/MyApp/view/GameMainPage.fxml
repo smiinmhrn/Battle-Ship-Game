@@ -65,7 +65,7 @@
          <children>
             <ImageView fx:id="imageView" fitHeight="582.0" fitWidth="454.0" layoutX="493.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="493.0" AnchorPane.rightAnchor="471.0" AnchorPane.topAnchor="249.0">
                <image>
-                  <Image url="@image/p4.png" />
+                  <Image url="@image/pic5.png" />
                </image>
             </ImageView>
             <VBox fx:id="userFiled" layoutX="39.0" layoutY="119.0" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="212.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="875.0" AnchorPane.topAnchor="136.0" />
@@ -87,7 +87,7 @@
             </Button>
             <ImageView fitHeight="52.0" fitWidth="59.0" layoutX="208.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@image/p9.png" />
+                  <Image url="@image/pic6.png" />
                </image>
             </ImageView>
             <Label fx:id="userNameLBL" alignment="TOP_LEFT" layoutX="272.0" layoutY="62.0" prefHeight="33.0" prefWidth="384.0" text="username">
@@ -102,7 +102,7 @@
             </Label>
             <ImageView fitHeight="52.0" fitWidth="59.0" layoutX="1099.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@image/p10.png" />
+                  <Image url="@image/pic7.png" />
                </image>
             </ImageView>
             <Label fx:id="userNameLBL1" alignment="TOP_LEFT" layoutX="1162.0" layoutY="62.0" prefHeight="33.0" prefWidth="136.0" text="Enemy">
@@ -115,7 +115,7 @@
                   <Font name="Bodoni MT" size="23.0" />
                </font>
             </Label>
-            <Button fx:id="reteyBTN" layoutX="260.0" layoutY="773.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: black; -fx-background-radius: 50;" text="Retry" textFill="WHITE">
+            <Button fx:id="retryBTN" layoutX="260.0" layoutY="773.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: black; -fx-background-radius: 50;" text="Retry" textFill="WHITE">
                <font>
                   <Font name="Bodoni MT" size="18.0" />
                </font>

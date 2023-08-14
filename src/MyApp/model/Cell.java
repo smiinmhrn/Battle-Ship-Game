@@ -4,11 +4,12 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.util.Objects;
+
 public class Cell extends Button {
     private int point = 0;
     private int xPosition;
     private int yPosition;
-
     private boolean isSelected;
     private boolean isEditable = true;
     private boolean isEnemyCell;
@@ -52,15 +53,16 @@ public class Cell extends Button {
         return point;
     }
 
-    public void setPoint(int point, ImageView imageView) {
-//        clearButt();
+    public void setPoint(int point) {
         this.point = point;
         if (!isEnemyCell)
-            setBackground(imageView);
+            setBackground();
     }
-    private void setBackground(ImageView imageView) {
+    private void setBackground() {
+
         setStyle("-fx-background-color: gray");
-        Image image = new Image(getClass().getResourceAsStream("/MyApp/view/image/p12.png"));
+        Image image = new Image(Objects.requireNonNull(
+                getClass().getResourceAsStream("/MyApp/view/image/pic9.png")));
 
         imageView = new ImageView(image);
         imageView.setFitWidth(25);
@@ -68,22 +70,4 @@ public class Cell extends Button {
 
         setGraphic(imageView);
     }
-
-
-    public int getxPosition() {
-        return xPosition;
-    }
-
-    public void setxPosition(int xPosition) {
-        this.xPosition = xPosition;
-    }
-
-    public int getyPosition() {
-        return yPosition;
-    }
-
-    public void setyPosition(int yPosition) {
-        this.yPosition = yPosition;
-    }
-
 }

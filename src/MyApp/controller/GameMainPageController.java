@@ -21,6 +21,7 @@ import java.net.URL;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class GameMainPageController implements Initializable {
@@ -52,28 +53,38 @@ public class GameMainPageController implements Initializable {
     private Button startGameBTN;
 
     @FXML
-    private Button reteyBTN;
+    private Button retryBTN;
     private boolean gameStarted;
 
     private ImageView imageView1 = null;
+
     private ImageView imageView = null;
+
     private Cell[][] userCell;
+    private MediaPlayer buttonMediaPlayer;
+    private Stage finalResultStage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        String buttonAudioFilePath = "src/MyApp/view/audio/bombSoundEffect.mp3";
+        Media buttonMedia = new Media(new File(buttonAudioFilePath).toURI().toString());
+        buttonMediaPlayer = new MediaPlayer(buttonMedia);
+
+        finalResultStage = new Stage();
 
         mouseHover();
         mouseOutOfHover();
 
         prepareGameBoard();
 
-        reteyBTN.setDisable(true);
+        retryBTN.setDisable(true);
         randomBTN.setOnAction(event -> prepareGameBoard());
 
-        reteyBTN.setOnAction(event -> {
+        retryBTN.setOnAction(event -> {
             prepareGameBoard();
 
-            reteyBTN.setDisable(true);
+            retryBTN.setDisable(true);
             randomBTN.setDisable(false);
             startGameBTN.setDisable(false);
 
@@ -87,7 +98,7 @@ public class GameMainPageController implements Initializable {
             gameStarted = true;
 
             randomBTN.setDisable(true);
-            reteyBTN.setDisable(false);
+            retryBTN.setDisable(false);
             startGameBTN.setDisable(true);
 
             existBTN.setText("Pause");
@@ -106,32 +117,24 @@ public class GameMainPageController implements Initializable {
 
     }
     private void mouseHover() {
-        randomBTN.setOnMouseEntered(mouseEvent -> {
-            randomBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50");
-        });
-        reteyBTN.setOnMouseEntered(mouseEvent -> {
-            reteyBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50");
-        });
-        existBTN.setOnMouseEntered(mouseEvent -> {
-            existBTN.setStyle("-fx-background-color: red; -fx-background-radius: 50");
-        });
-        startGameBTN.setOnMouseEntered(mouseEvent -> {
-            startGameBTN.setStyle("-fx-background-color: green; -fx-background-radius: 50");
-        });
+        randomBTN.setOnMouseEntered(
+                mouseEvent -> randomBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50"));
+        retryBTN.setOnMouseEntered(
+                mouseEvent -> retryBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50"));
+        existBTN.setOnMouseEntered(
+                mouseEvent -> existBTN.setStyle("-fx-background-color: red; -fx-background-radius: 50"));
+        startGameBTN.setOnMouseEntered(
+                mouseEvent -> startGameBTN.setStyle("-fx-background-color: green; -fx-background-radius: 50"));
     }
     private void mouseOutOfHover(){
-        randomBTN.setOnMouseExited(mouseEvent -> {
-            randomBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50");
-        });
-        reteyBTN.setOnMouseExited(mouseEvent -> {
-            reteyBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50");
-        });
-        existBTN.setOnMouseExited(mouseEvent -> {
-            existBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50");
-        });
-        startGameBTN.setOnMouseExited(mouseEvent -> {
-            startGameBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50");
-        });
+        randomBTN.setOnMouseExited(
+                mouseEvent -> randomBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50"));
+        retryBTN.setOnMouseExited(
+                mouseEvent -> retryBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50"));
+        existBTN.setOnMouseExited(
+                mouseEvent -> existBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50"));
+        startGameBTN.setOnMouseExited(
+                mouseEvent -> startGameBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50"));
     }
     public void initUser(User loggedUser) {
         this.loggedUser = loggedUser;
@@ -187,18 +190,9 @@ public class GameMainPageController implements Initializable {
             pointsLBL.setText("Points: " + loggedUser.getPoint());
         }
     }
-    private void play (Cell cell) {
-
-
-            String audioFilePath = "src/MyApp/view/audio/bbb.mp3";
-
-            Media media = new Media(new File(audioFilePath).toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-            mediaPlayer.seek(mediaPlayer.getStartTime());
-            mediaPlayer.play();
-
-
+    private void playAudio() {
+        buttonMediaPlayer.seek(buttonMediaPlayer.getStartTime());
+        buttonMediaPlayer.play();
     }
     private void cellOnAction(Cell cell) {
 
@@ -240,7 +234,7 @@ public class GameMainPageController implements Initializable {
                         if (userCell[x][y].getPoint() != 0) {
 
                             setBackground(userCell[x][y]);
-                            play(userCell[x][y]);
+                            playAudio();
 
                             userCell[x][y].setSelected(true);
 
@@ -274,7 +268,8 @@ public class GameMainPageController implements Initializable {
     private void setBackground(Cell cell) {
 
         cell.setStyle("-fx-background-color: red");
-        Image image = new Image(getClass().getResourceAsStream("/MyApp/view/image/p11.png"));
+        Image image = new Image(Objects.requireNonNull(
+                getClass().getResourceAsStream("/MyApp/view/image/pic8.png")));
 
         imageView = new ImageView(image);
         imageView.setFitWidth(25);
@@ -335,10 +330,11 @@ public class GameMainPageController implements Initializable {
                     else {
                         cells[i][j].setEditable(false);
                         if (isCoreOfRectangle(xStart, xEnd, yStart, yEnd, i, j)) {
-                            Image image = new Image(getClass().getResourceAsStream("/MyApp/view/image/p12.png"));
+                            Image image = new Image(Objects.requireNonNull(
+                                    getClass().getResourceAsStream("/MyApp/view/image/pic9.png")));
 
                             this.imageView1 = new ImageView(image);
-                            cells[i][j].setPoint(getPoint(len), imageView1);
+                            cells[i][j].setPoint(getPoint(len));
                         }
                     }
                 } catch (Exception ignored){
@@ -383,21 +379,23 @@ public class GameMainPageController implements Initializable {
     private void showWinnerWindow() throws IOException {
         gameStarted = false;
 
-        AnchorPane root = FXMLLoader.load(this.getClass().getResource("/MyApp/view/WinnerWindow.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Final Result");
-        stage.setResizable(false);
-        stage.setScene(new Scene(root));
-        stage.show();
+        AnchorPane root = FXMLLoader.load(Objects.requireNonNull(
+                this.getClass().getResource("/MyApp/view/WinnerWindow.fxml")));
+
+        this.finalResultStage.setTitle("Final Result");
+        this.finalResultStage.setResizable(false);
+        this.finalResultStage.setScene(new Scene(root));
+        this.finalResultStage.show();
     }
     private void showGameOverWindow() throws IOException {
         gameStarted = false;
 
-        AnchorPane root = FXMLLoader.load(this.getClass().getResource("/MyApp/view/GameOver.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Final Result");
-        stage.setResizable(false);
-        stage.setScene(new Scene(root));
-        stage.show();
+        AnchorPane root = FXMLLoader.load(Objects.requireNonNull(
+                this.getClass().getResource("/MyApp/view/GameOver.fxml")));
+
+        this.finalResultStage.setTitle("Final Result");
+        this.finalResultStage.setResizable(false);
+        this.finalResultStage.setScene(new Scene(root));
+        this.finalResultStage.show();
     }
 }

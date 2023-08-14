@@ -3,6 +3,7 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,12 +18,11 @@
          <children>
             <ImageView fitHeight="557.0" fitWidth="836.0" layoutX="323.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@image/p1.png" />
+                  <Image url="@image/pic2.png" />
                </image>
             </ImageView>
             <Group layoutX="76.0" layoutY="244.0">
                <children>
-                  <TextField fx:id="passWordField" layoutY="35.0" prefHeight="25.0" prefWidth="315.0" promptText="Password" />
                   <Button fx:id="exitBTN" layoutY="76.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: black; -fx-background-radius: 50;" text="Exit" textFill="WHITE">
                      <font>
                         <Font name="Bodoni MT" size="13.0" />
@@ -36,6 +36,7 @@
                      <font>
                         <Font name="Bodoni MT" size="13.0" />
                      </font></Button>
+                  <PasswordField fx:id="passWordField" layoutX="1.0" layoutY="39.0" prefHeight="25.0" prefWidth="315.0" promptText="Password" />
                </children>
             </Group>
 
@@ -56,7 +57,7 @@
             </Text>
             <ImageView fitHeight="232.0" fitWidth="277.0" layoutX="53.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@image/p3.png" />
+                  <Image url="@image/pic4.png" />
                </image>
             </ImageView>
             <Label fx:id="errorLBL" alignment="CENTER" layoutX="79.0" layoutY="221.0" prefHeight="17.0" prefWidth="312.0" text="Label" textAlignment="CENTER" textFill="RED">

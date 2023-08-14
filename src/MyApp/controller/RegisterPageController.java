@@ -4,6 +4,7 @@ import MyApp.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
@@ -21,7 +22,7 @@ public class RegisterPageController implements Initializable {
     private Button registerBTN;
 
     @FXML
-    private TextField confField;
+    private PasswordField confField;
 
     @FXML
     private TextField lastNameField;
@@ -30,20 +31,24 @@ public class RegisterPageController implements Initializable {
     private TextField nameField;
 
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
 
     @FXML
     private TextField usernameField;
 
     @FXML
-    private Label errorLable;
+    private Label errorLBL;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         mouseHover();
         mouseOutOfHover();
-        errorLable.setText("");
+
+        errorLBL.setText("");
+
         cancelBTN.setOnAction(event -> cancelBTNAction());
+
         registerBTN.setOnAction(event -> {
             try {
                 register();
@@ -53,20 +58,16 @@ public class RegisterPageController implements Initializable {
         });
     }
     private void mouseHover() {
-        cancelBTN.setOnMouseEntered(mouseEvent -> {
-            cancelBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50");
-        });
-        registerBTN.setOnMouseEntered(mouseEvent -> {
-            registerBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50");
-        });
+        cancelBTN.setOnMouseEntered(
+                mouseEvent -> cancelBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50"));
+        registerBTN.setOnMouseEntered(
+                mouseEvent -> registerBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50"));
     }
     private void mouseOutOfHover(){
-        cancelBTN.setOnMouseExited(mouseEvent -> {
-            cancelBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50");
-        });
-        registerBTN.setOnMouseExited(mouseEvent -> {
-            registerBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50");
-        });
+        cancelBTN.setOnMouseExited(
+                mouseEvent -> cancelBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50"));
+        registerBTN.setOnMouseExited(
+                mouseEvent -> registerBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50"));
     }
     private void cancelBTNAction() {
         ((Stage)cancelBTN.getScene().getWindow()).close();
@@ -86,8 +87,8 @@ public class RegisterPageController implements Initializable {
         if (usernameField.getText().isEmpty() || nameField.getText().isEmpty() ||
                 lastNameField.getText().isEmpty() || passwordField.getText().isEmpty()
                 || confField.getText().isEmpty()) {
-            errorLable.setTextFill(Color.RED);
-            errorLable.setText("Please fill in all the fields");
+            errorLBL.setTextFill(Color.RED);
+            errorLBL.setText("Please fill in all the fields");
             return false;
         }
         return true;
@@ -96,8 +97,8 @@ public class RegisterPageController implements Initializable {
         ArrayList<User> users = User.getAllUsers();
         for (User user: users) {
             if (user.getUserName().equals(usernameField.getText())) {
-                errorLable.setTextFill(Color.RED);
-                errorLable.setText("This is username is already taken. try another one");
+                errorLBL.setTextFill(Color.RED);
+                errorLBL.setText("This is username is already taken. try another one");
                 return false;
             }
         }
@@ -105,8 +106,8 @@ public class RegisterPageController implements Initializable {
     }
     private boolean checkPasswords() {
         if (!(passwordField.getText().equals(confField.getText()))){
-            errorLable.setTextFill(Color.RED);
-            errorLable.setText("passwords arent the same");
+            errorLBL.setTextFill(Color.RED);
+            errorLBL.setText("passwords arent the same");
             return false;
         }
         return true;
@@ -117,8 +118,8 @@ public class RegisterPageController implements Initializable {
         lastNameField.setText("");
         passwordField.setText("");
         confField.setText("");
-        errorLable.setTextFill(Color.GREEN);
-        errorLable.setText("""
+        errorLBL.setTextFill(Color.GREEN);
+        errorLBL.setText("""
                 registered successfully!
                 register another account or\s
                 press cancel and enter the game""");
