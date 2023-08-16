@@ -121,6 +121,23 @@
                   <DropShadow height="114.79" radius="56.895" width="114.79" />
                </effect>
             </VBox>
+            <Button fx:id="soundBTN" layoutX="1517.0" layoutY="35.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="54.0" style="-fx-background-color: black; -fx-background-radius: 100;" text="Sound" textFill="WHITE">
+               <effect>
+                  <Lighting diffuseConstant="2.0">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Button>
+            <Label fx:id="statusLBL" layoutX="1465.0" layoutY="49.0" prefHeight="27.0" prefWidth="45.0" text="ON" textFill="WHITE" underline="true">
+               <font>
+                  <Font name="Bodoni MT" size="22.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

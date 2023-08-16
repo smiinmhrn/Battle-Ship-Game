@@ -1,5 +1,6 @@
 package MyApp.controller;
 
+import MyApp.Main;
 import MyApp.model.Cell;
 import MyApp.model.User;
 import javafx.application.Platform;
@@ -60,6 +61,11 @@ public class GameMainPageController implements Initializable {
 
     private ImageView imageView = null;
 
+    @FXML
+    private Button soundBTN;
+
+    @FXML
+    private Label statusLBL;
     private Cell[][] userCell;
     private MediaPlayer buttonMediaPlayer;
 
@@ -75,6 +81,7 @@ public class GameMainPageController implements Initializable {
 
         prepareGameBoard();
 
+        statusLBL.setText("ON");
         retryBTN.setDisable(true);
         randomBTN.setOnAction(event -> prepareGameBoard());
 
@@ -109,11 +116,22 @@ public class GameMainPageController implements Initializable {
 
                 gameStarted = false;
             });
+        });
 
+        soundBTN.setOnAction(event -> {
+            if (Main.mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+                statusLBL.setText("OFF");
+                Main.mediaPlayer.stop();
+            }else {
+                statusLBL.setText("ON");
+                Main.mediaPlayer.play();
+            }
         });
 
     }
     private void mouseHover() {
+        soundBTN.setOnMouseEntered(
+                mouseEvent -> soundBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 100"));
         randomBTN.setOnMouseEntered(
                 mouseEvent -> randomBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50"));
         retryBTN.setOnMouseEntered(
@@ -124,6 +142,8 @@ public class GameMainPageController implements Initializable {
                 mouseEvent -> startGameBTN.setStyle("-fx-background-color: green; -fx-background-radius: 50"));
     }
     private void mouseOutOfHover(){
+        soundBTN.setOnMouseExited(
+                mouseEvent -> soundBTN.setStyle("-fx-background-color: black; -fx-background-radius: 100"));
         randomBTN.setOnMouseExited(
                 mouseEvent -> randomBTN.setStyle("-fx-background-color: black; -fx-background-radius: 50"));
         retryBTN.setOnMouseExited(
