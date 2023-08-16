@@ -62,7 +62,6 @@ public class GameMainPageController implements Initializable {
 
     private Cell[][] userCell;
     private MediaPlayer buttonMediaPlayer;
-    private Stage finalResultStage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -70,8 +69,6 @@ public class GameMainPageController implements Initializable {
         String buttonAudioFilePath = "src/MyApp/view/audio/bombSoundEffect.mp3";
         Media buttonMedia = new Media(new File(buttonAudioFilePath).toURI().toString());
         buttonMediaPlayer = new MediaPlayer(buttonMedia);
-
-        finalResultStage = new Stage();
 
         mouseHover();
         mouseOutOfHover();
@@ -191,8 +188,17 @@ public class GameMainPageController implements Initializable {
         }
     }
     private void playAudio() {
+
+        if (buttonMediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+            buttonMediaPlayer.stop();
+            buttonMediaPlayer.dispose();
+        }
+
+        buttonMediaPlayer = new MediaPlayer(buttonMediaPlayer.getMedia());
+
         buttonMediaPlayer.seek(buttonMediaPlayer.getStartTime());
         buttonMediaPlayer.play();
+
     }
     private void cellOnAction(Cell cell) {
 
@@ -200,24 +206,25 @@ public class GameMainPageController implements Initializable {
 
             if (cell.isEnemyCell() && !cell.isSelected() && gameStarted) {
                 if (cell.getPoint() != 0) {
-
                     setBackground(cell);
 
                     loggedUser.setPoint(loggedUser.getPoint() + cell.getPoint());
                     pointsLBL.setText("Points: " + loggedUser.getPoint());
 
                     if (loggedUser.getPoint() == 50) {
-                        try {
+                        result("/MyApp/view/WinnerWindow.fxml");
+//                        try {
+//                            showWinnerWindow();
+//                            System.out.println("6");
+//                        } catch (IOException e) {
+//                            System.out.println("7");
+//                            throw new RuntimeException(e);
+//                        }
+                        startGameBTN.setDisable(true);
+                        randomBTN.setDisable(true);
+                        existBTN.setText("Exit");
+                        existBTN.setOnAction(event1 -> Platform.exit());
 
-                            showWinnerWindow();
-                            startGameBTN.setDisable(true);
-                            randomBTN.setDisable(true);
-                            existBTN.setText("Exit");
-                            existBTN.setOnAction(event1 -> Platform.exit());
-
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
                     }
 
                 } else {
@@ -239,20 +246,18 @@ public class GameMainPageController implements Initializable {
                             userCell[x][y].setSelected(true);
 
                             enemyPoint = enemyPoint + userCell[x][y].getPoint();
+//                            enemyPoint = 50;
                             enemyPointLBL.setText("Points: " + enemyPoint);
 
                             if (enemyPoint == 50 && loggedUser.getPoint() != 50) {
-                                try {
+                                result("/MyApp/view/GameOver.fxml");
+//                                Platform.exit();
+                                //                                    showGameOverWindow();
+                                startGameBTN.setDisable(true);
+                                randomBTN.setDisable(true);
+                                existBTN.setText("Exit");
+                                existBTN.setOnAction(event1 -> Platform.exit());
 
-                                    showGameOverWindow();
-                                    startGameBTN.setDisable(true);
-                                    randomBTN.setDisable(true);
-                                    existBTN.setText("Exit");
-                                    existBTN.setOnAction(event1 -> Platform.exit());
-
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
-                                }
                             }
                         }else {
                             userCell[x][y].setStyle("-fx-background-color: blue");
@@ -376,26 +381,28 @@ public class GameMainPageController implements Initializable {
     private boolean isCoreOfRectangle(int xStart, int xEnd, int yStart, int yEnd, int i, int j) {
         return i != xStart && i != xEnd && j != yStart && j != yEnd;
     }
-    private void showWinnerWindow() throws IOException {
-        gameStarted = false;
+    private void result(String path) {
+        Thread secondaryThread = new Thread(() -> {
 
-        AnchorPane root = FXMLLoader.load(Objects.requireNonNull(
-                this.getClass().getResource("/MyApp/view/WinnerWindow.fxml")));
+            gameStarted = false;
+            Platform.runLater(() -> {
+                Stage secondaryStage = new Stage();
+                AnchorPane root;
+                try {
+                    root = FXMLLoader.load(this.getClass().getResource(path));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Scene secondaryScene = new Scene(root);
+                secondaryStage.setScene(secondaryScene);
+                secondaryStage.setResizable(false);
+                secondaryStage.setTitle("Final Result");
+                secondaryStage.show();
+            });
+        });
 
-        this.finalResultStage.setTitle("Final Result");
-        this.finalResultStage.setResizable(false);
-        this.finalResultStage.setScene(new Scene(root));
-        this.finalResultStage.show();
-    }
-    private void showGameOverWindow() throws IOException {
-        gameStarted = false;
-
-        AnchorPane root = FXMLLoader.load(Objects.requireNonNull(
-                this.getClass().getResource("/MyApp/view/GameOver.fxml")));
-
-        this.finalResultStage.setTitle("Final Result");
-        this.finalResultStage.setResizable(false);
-        this.finalResultStage.setScene(new Scene(root));
-        this.finalResultStage.show();
+        secondaryThread.start();
     }
 }
+
+
