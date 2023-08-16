@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.util.Objects;
 
+/**
+ * @author Samin Mehran
+ */
 public class Main extends Application {
     private MediaPlayer mediaPlayer;
     public static void main(String[] args) {
@@ -42,6 +45,5 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
-//        audioPlayer.start();
     }
 }
