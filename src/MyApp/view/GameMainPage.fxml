@@ -63,13 +63,13 @@
    <center>
       <AnchorPane prefHeight="909.0" prefWidth="1702.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="imageView" fitHeight="582.0" fitWidth="454.0" layoutX="493.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="493.0" AnchorPane.rightAnchor="471.0" AnchorPane.topAnchor="249.0">
+            <ImageView  fitHeight="582.0" fitWidth="454.0" layoutX="493.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="493.0" AnchorPane.rightAnchor="471.0" AnchorPane.topAnchor="249.0">
                <image>
                   <Image url="@image/pic5.png" />
                </image>
             </ImageView>
-            <VBox fx:id="userFiled" layoutX="39.0" layoutY="119.0" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="212.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="875.0" AnchorPane.topAnchor="136.0" />
-            <VBox fx:id="enemyFiled" layoutX="824.0" layoutY="177.0" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="212.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="136.0" />
+            <VBox fx:id="userFiled" layoutX="39.0" layoutY="119.0" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="212.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="875.0" AnchorPane.topAnchor="136.0" stylesheets="@BackGround.css" styleClass="vbox-with-background" />
+            <VBox fx:id="enemyFiled" layoutX="824.0" layoutY="177.0" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="212.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="136.0" stylesheets="@BackGround.css" styleClass="vbox-with-background"/>
             <Button fx:id="randomBTN" layoutX="39.0" layoutY="773.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="195.0" style="-fx-background-color: black; -fx-background-radius: 50;" text="Change Zone" textFill="WHITE">
                <font>
                   <Font name="Bodoni MT" size="18.0" />

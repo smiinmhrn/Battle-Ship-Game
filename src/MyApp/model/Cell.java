@@ -15,6 +15,11 @@ public class Cell extends Button {
     private boolean isEnemyCell;
     private ImageView imageView;
 
+    public boolean isShip() {
+        return isShip;
+    }
+
+    private boolean isShip = false;
     public Cell(int xPosition, int yPosition, boolean isEnemyCell) {
         super(" ");
         this.xPosition = xPosition;
@@ -59,8 +64,8 @@ public class Cell extends Button {
             setBackground();
     }
     private void setBackground() {
-
-        setStyle("-fx-background-color: gray");
+        this.isShip = true;
+        setStyle("-fx-background-color: brown");
         Image image = new Image(Objects.requireNonNull(
                 getClass().getResourceAsStream("/MyApp/view/image/pic9.png")));
 

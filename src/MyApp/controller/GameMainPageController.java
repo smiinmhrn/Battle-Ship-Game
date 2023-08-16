@@ -157,6 +157,13 @@ public class GameMainPageController implements Initializable {
 
             for (int j = 0; j < 10; j++) {
 
+                userCell[i][j].setOpacity(0.4);
+                enemyCell[i][j].setOpacity(0.4);
+
+                if (userCell[i][j].isShip()) {
+                    userCell[i][j].setOpacity(1);
+                }
+
                 userHbox.getChildren().add(userCell[i][j]);
                 enemyHbox.getChildren().add(enemyCell[i][j]);
             }
@@ -216,7 +223,7 @@ public class GameMainPageController implements Initializable {
                     }
 
                 } else {
-                    cell.setStyle("-fx-background-color: blue");
+                    cell.setOpacity(0);
                 }
                 cell.setSelected(true);
 
@@ -240,7 +247,7 @@ public class GameMainPageController implements Initializable {
                                 winnerController("/MyApp/view/GameOverWindow.fxml");
                             }
                         }else {
-                            userCell[x][y].setStyle("-fx-background-color: blue");
+                            userCell[x][y].setOpacity(0);
                             userCell[x][y].setSelected(true);
                         }
                         break;
@@ -258,7 +265,7 @@ public class GameMainPageController implements Initializable {
         existBTN.setOnAction(event1 -> Platform.exit());
     }
     private void setBackground(Cell cell) {
-
+        cell.setOpacity(1);
         cell.setStyle("-fx-background-color: red");
         Image image = new Image(Objects.requireNonNull(
                 getClass().getResourceAsStream("/MyApp/view/image/pic8.png")));
