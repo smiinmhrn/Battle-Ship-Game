@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" opacity="0.27">
          <image>
-            <Image url="@image/pic10.png" />
+            <Image url="@image/pic5.png" />
          </image>
       </ImageView>
       <VBox alignment="CENTER" layoutX="114.0" layoutY="100.0" prefHeight="200.0" prefWidth="372.0">
@@ -27,22 +27,22 @@
                <children>
                   <ImageView fitHeight="52.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/pic11.png" />
+                        <Image url="@image/pic6.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="52.0" fitWidth="54.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/pic11.png" />
+                        <Image url="@image/pic6.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="52.0" fitWidth="54.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/pic11.png" />
+                        <Image url="@image/pic6.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="52.0" fitWidth="54.0" layoutX="64.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/pic11.png" />
+                        <Image url="@image/pic6.png" />
                      </image>
                   </ImageView>
                </children>

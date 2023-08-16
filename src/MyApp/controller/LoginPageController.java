@@ -4,12 +4,14 @@ import MyApp.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -45,6 +47,8 @@ public class LoginPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
+
         mouseHover();
         mouseOutOfHover();
 
@@ -70,7 +74,7 @@ public class LoginPageController implements Initializable {
     }
     private void mouseHover() {
         exitBTN.setOnMouseEntered(
-                mouseEvent -> exitBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50"));
+                mouseEvent -> exitBTN.setStyle("-fx-background-color: red; -fx-background-radius: 50"));
         startBTN.setOnMouseEntered(
                 mouseEvent -> startBTN.setStyle("-fx-background-color: blue; -fx-background-radius: 50"));
         registerBTN.setOnMouseEntered(
@@ -113,6 +117,7 @@ public class LoginPageController implements Initializable {
             Stage mianStage = (Stage)registerBTN.getScene().getWindow();
 
             mianStage.setScene(new Scene(fxmlLoader.getRoot()));
+            mianStage.centerOnScreen();
             mianStage.setFullScreen(false);
 
         }

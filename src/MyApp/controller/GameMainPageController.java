@@ -140,7 +140,6 @@ public class GameMainPageController implements Initializable {
         enemyPointLBL.setText("Points: " + "0");
     }
     private void prepareGameBoard() {
-
         resetPoints();
         clearButton();
         clearGameBoard();
@@ -268,7 +267,7 @@ public class GameMainPageController implements Initializable {
         cell.setOpacity(1);
         cell.setStyle("-fx-background-color: red");
         Image image = new Image(Objects.requireNonNull(
-                getClass().getResourceAsStream("/MyApp/view/image/pic8.png")));
+                getClass().getResourceAsStream("/MyApp/view/image/pic3.png")));
 
         imageView = new ImageView(image);
         imageView.setFitWidth(25);
@@ -330,7 +329,7 @@ public class GameMainPageController implements Initializable {
                         cells[i][j].setEditable(false);
                         if (isCoreOfRectangle(xStart, xEnd, yStart, yEnd, i, j)) {
                             Image image = new Image(Objects.requireNonNull(
-                                    getClass().getResourceAsStream("/MyApp/view/image/pic9.png")));
+                                    getClass().getResourceAsStream("/MyApp/view/image/pic4.png")));
 
                             this.imageView1 = new ImageView(image);
                             cells[i][j].setPoint(getPoint(len));

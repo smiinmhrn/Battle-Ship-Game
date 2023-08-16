@@ -5,64 +5,147 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MyApp.controller.RegisterPageController">
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="258.0" fitWidth="337.0" layoutX="-9.0" layoutY="-72.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="664.0" fitWidth="478.0" opacity="0.5">
                <image>
-                  <Image url="@image/pic1.png" />
+                  <Image url="@image/pic12.jpg" />
                </image>
             </ImageView>
-            <Text layoutX="109.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BATTLE SHIP" wrappingWidth="290.4921875">
+            <Text layoutX="109.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BATTLE SHIP" wrappingWidth="290.4921875">
                <font>
                   <Font name="Bodoni MT Bold" size="42.0" />
                </font>
+               <effect>
+                  <Lighting specularConstant="0.97" specularExponent="14.02">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant>
+                           <color>
+                              <Color red="0.5647059082984924" green="0.658823549747467" blue="0.8156862854957581" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </effect>
             </Text>
-            <Text layoutX="282.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
+            <Text layoutX="279.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
                <font>
-                  <Font name="Book Antiqua Bold Italic" size="22.0" />
+                  <Font name="Bodoni MT Bold Italic" size="22.0" />
                </font>
             </Text>
-            <VBox alignment="BOTTOM_CENTER" layoutX="74.0" layoutY="91.0" prefHeight="395.0" prefWidth="331.0" spacing="20.0">
+            <VBox alignment="BOTTOM_CENTER" layoutX="74.0" layoutY="88.0" prefHeight="398.0" prefWidth="331.0" spacing="20.0">
                <children>
-                  <Label fx:id="errorLBL" text="Error Massage" textAlignment="CENTER" textFill="RED">
+                  <Label fx:id="errorLBL" alignment="BOTTOM_CENTER" prefHeight="131.0" prefWidth="278.0" text="Error Massage" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Bodoni MT" size="15.0" />
+                        <Font name="Bodoni MT" size="17.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="usernameField" prefHeight="33.0" prefWidth="331.0" promptText="Username">
+                  <TextField fx:id="usernameField" prefHeight="33.0" prefWidth="331.0" promptText="Username" style="-fx-background-color: black;" styleClass="custom-textField" stylesheets="@Styles.css">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <effect>
+                        <Lighting diffuseConstant="2.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
                   </TextField>
-                  <TextField fx:id="nameField" layoutX="10.0" layoutY="172.0" prefHeight="33.0" prefWidth="331.0" promptText="Name" />
-                  <TextField fx:id="lastNameField" layoutX="10.0" layoutY="188.0" prefHeight="33.0" prefWidth="331.0" promptText="LastName" />
-                  <PasswordField fx:id="passwordField" prefHeight="33.0" prefWidth="331.0" promptText="Password" />
-                  <PasswordField fx:id="confField" layoutX="10.0" layoutY="372.0" prefHeight="33.0" prefWidth="331.0" promptText="Confirm Password" />
+                  <TextField fx:id="nameField" layoutX="10.0" layoutY="172.0" prefHeight="33.0" prefWidth="331.0" promptText="Name" style="-fx-background-color: black;" styleClass="custom-textField" stylesheets="@Styles.css">
+                     <effect>
+                        <Lighting diffuseConstant="2.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect></TextField>
+                  <TextField fx:id="lastNameField" layoutX="10.0" layoutY="188.0" prefHeight="33.0" prefWidth="331.0" promptText="LastName" style="-fx-background-color: black;" styleClass="custom-textField" stylesheets="@Styles.css">
+                     <effect>
+                        <Lighting diffuseConstant="2.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect></TextField>
+                  <PasswordField fx:id="passwordField" prefHeight="33.0" prefWidth="331.0" promptText="Password" style="-fx-background-color: black;" styleClass="custom-textField" stylesheets="@Styles.css">
+                     <effect>
+                        <Lighting diffuseConstant="2.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect></PasswordField>
+                  <PasswordField fx:id="confField" layoutX="10.0" layoutY="372.0" prefHeight="33.0" prefWidth="331.0" promptText="Confirm Password" style="-fx-background-color: black;" styleClass="custom-textField" stylesheets="@Styles.css">
+                     <effect>
+                        <Lighting diffuseConstant="2.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect></PasswordField>
                </children>
             </VBox>
             <Button fx:id="cancelBTN" layoutX="74.0" layoutY="510.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="152.0" style="-fx-background-color: black; -fx-background-radius: 50;" text="Cancel" textFill="WHITE">
                <font>
                   <Font name="Bodoni MT" size="22.0" />
-               </font></Button>
+               </font>
+               <effect>
+                  <Lighting diffuseConstant="2.0">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect></Button>
             <Button fx:id="registerBTN" layoutX="254.0" layoutY="510.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="152.0" style="-fx-background-color: black; -fx-background-radius: 50;" text="Register" textFill="WHITE">
                <font>
                   <Font name="Bodoni MT" size="22.0" />
-               </font></Button>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="139.0" layoutY="555.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/pic3.png" />
-               </image>
-            </ImageView>
+               </font>
+               <effect>
+                  <Lighting diffuseConstant="2.0">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect></Button>
          </children>
       </AnchorPane>
    </center>

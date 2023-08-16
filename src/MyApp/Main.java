@@ -17,7 +17,7 @@ import java.util.Objects;
  * @author Samin Mehran
  */
 public class Main extends Application {
-    private MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer;
     public static void main(String[] args) {
         launch(args);
     }
@@ -31,6 +31,7 @@ public class Main extends Application {
 
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
+
 
         stage.setOnCloseRequest(event -> {
             mediaPlayer.stop();

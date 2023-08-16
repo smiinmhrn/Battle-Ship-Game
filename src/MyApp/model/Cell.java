@@ -67,7 +67,7 @@ public class Cell extends Button {
         this.isShip = true;
         setStyle("-fx-background-color: brown");
         Image image = new Image(Objects.requireNonNull(
-                getClass().getResourceAsStream("/MyApp/view/image/pic9.png")));
+                getClass().getResourceAsStream("/MyApp/view/image/pic4.png")));
 
         imageView = new ImageView(image);
         imageView.setFitWidth(25);

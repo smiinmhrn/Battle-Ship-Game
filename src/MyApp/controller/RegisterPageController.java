@@ -87,7 +87,7 @@ public class RegisterPageController implements Initializable {
         if (usernameField.getText().isEmpty() || nameField.getText().isEmpty() ||
                 lastNameField.getText().isEmpty() || passwordField.getText().isEmpty()
                 || confField.getText().isEmpty()) {
-            errorLBL.setTextFill(Color.RED);
+            errorLBL.setTextFill(Color.WHITE);
             errorLBL.setText("Please fill in all the fields");
             return false;
         }
@@ -97,7 +97,7 @@ public class RegisterPageController implements Initializable {
         ArrayList<User> users = User.getAllUsers();
         for (User user: users) {
             if (user.getUserName().equals(usernameField.getText())) {
-                errorLBL.setTextFill(Color.RED);
+                errorLBL.setTextFill(Color.WHITE);
                 errorLBL.setText("This is username is already taken. try another one");
                 return false;
             }
@@ -106,8 +106,8 @@ public class RegisterPageController implements Initializable {
     }
     private boolean checkPasswords() {
         if (!(passwordField.getText().equals(confField.getText()))){
-            errorLBL.setTextFill(Color.RED);
-            errorLBL.setText("passwords arent the same");
+            errorLBL.setTextFill(Color.WHITE);
+            errorLBL.setText("Passwords arent the same");
             return false;
         }
         return true;
@@ -118,9 +118,8 @@ public class RegisterPageController implements Initializable {
         lastNameField.setText("");
         passwordField.setText("");
         confField.setText("");
-        errorLBL.setTextFill(Color.GREEN);
         errorLBL.setText("""
-                registered successfully!
+                Registered successfully!
                 register another account or\s
                 press cancel and enter the game""");
     }
