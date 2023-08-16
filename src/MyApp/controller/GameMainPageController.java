@@ -212,19 +212,7 @@ public class GameMainPageController implements Initializable {
                     pointsLBL.setText("Points: " + loggedUser.getPoint());
 
                     if (loggedUser.getPoint() == 50) {
-                        result("/MyApp/view/WinnerWindow.fxml");
-//                        try {
-//                            showWinnerWindow();
-//                            System.out.println("6");
-//                        } catch (IOException e) {
-//                            System.out.println("7");
-//                            throw new RuntimeException(e);
-//                        }
-                        startGameBTN.setDisable(true);
-                        randomBTN.setDisable(true);
-                        existBTN.setText("Exit");
-                        existBTN.setOnAction(event1 -> Platform.exit());
-
+                        winnerController("/MyApp/view/WinnerWindow.fxml");
                     }
 
                 } else {
@@ -246,18 +234,10 @@ public class GameMainPageController implements Initializable {
                             userCell[x][y].setSelected(true);
 
                             enemyPoint = enemyPoint + userCell[x][y].getPoint();
-//                            enemyPoint = 50;
                             enemyPointLBL.setText("Points: " + enemyPoint);
 
                             if (enemyPoint == 50 && loggedUser.getPoint() != 50) {
-                                result("/MyApp/view/GameOver.fxml");
-//                                Platform.exit();
-                                //                                    showGameOverWindow();
-                                startGameBTN.setDisable(true);
-                                randomBTN.setDisable(true);
-                                existBTN.setText("Exit");
-                                existBTN.setOnAction(event1 -> Platform.exit());
-
+                                winnerController("/MyApp/view/GameOverWindow.fxml");
                             }
                         }else {
                             userCell[x][y].setStyle("-fx-background-color: blue");
@@ -269,6 +249,13 @@ public class GameMainPageController implements Initializable {
                 }
             }
         });
+    }
+    private void winnerController(String path) {
+        result(path);
+        startGameBTN.setDisable(true);
+        randomBTN.setDisable(true);
+        existBTN.setText("Exit");
+        existBTN.setOnAction(event1 -> Platform.exit());
     }
     private void setBackground(Cell cell) {
 
@@ -389,7 +376,7 @@ public class GameMainPageController implements Initializable {
                 Stage secondaryStage = new Stage();
                 AnchorPane root;
                 try {
-                    root = FXMLLoader.load(this.getClass().getResource(path));
+                    root = FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource(path)));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
